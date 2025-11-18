@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yasdon Exchange | Buy & Sell Cryptocurrency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2962ff;
+            --primary-dark: #0039cb;
+            --secondary: #00c853;
+            --dark: #121826;
+            --light: #f5f7ff;
+            --gray: #e0e0e0;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --card-bg: rgba(30, 35, 50, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: radial-gradient(circle at top right, rgba(41, 98, 255, 0.1), transparent 30%),
+                        radial-gradient(circle at bottom left, rgba(0, 200, 83, 0.1), transparent 30%),
+                        var(--dark);
+        }
+
+        header {
+            background-color: rgba(18, 24, 38, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background: var(--light);
+            margin: 2px;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+            padding-top: 70px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .hero h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .hero-buttons button {
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .primary-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--primary);
+        }
+
+        .hero-buttons button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(41, 98, 255, 0.2);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+
+        .wallet-section {
+            background: rgba(10, 15, 26, 0.7);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .wallet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .wallet-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid rgba(41, 98, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wallet-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .wallet-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .wallet-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .wallet-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .wallet-address {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            margin: 1.5rem 0;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .wallet-address:hover {
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .wallet-address::after {
+            content: 'Click to copy';
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: var(--primary);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .wallet-address:hover::after {
+            opacity: 1;
+        }
+
+        .qrcode-container {
+            margin: 1.5rem auto;
+            width: 150px;
+            height: 150px;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .qrcode-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .transaction-form {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .submit-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background-color: #0a0f1a;
+            padding: 3rem 5%;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--gradient);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--secondary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.5s;
+            z-index: 10000;
+        }
+
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 992px) {
+            .hero-image {
+                width: 400px;
+                height: 400px;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--dark);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 100px;
+                height: auto;
+            }
+            
+            .hero-content {
+                margin-bottom: 3rem;
+                max-width: 100%;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-image {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none;
+                margin: 0 auto;
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .wallet-section, .transaction-form {
+                padding: 1.5rem;
+            }
+            
+            .section {
+                padding: 3rem 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Yasdon<span>Exchange</span></div>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#wallets">My Wallets</a></li>
+                <li><a href="#transaction">Make Transaction</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle" id="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Secure Crypto <span>Transactions</span></h1>
+            <p>Professional cryptocurrency vendor with verified wallet addresses. Buy and sell crypto securely with low fees and fast transactions.</p>
+            <div class="hero-buttons">
+                <a href="#wallets"><button class="primary-btn">View My Wallets</button></a>
+                <a href="#transaction"><button class="secondary-btn">Make Transaction</button></a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src=https://www.coinbackyard.com/wp-content/uploads/2024/09/what-is-btc-dominance.jpg
+        </div>
+    </section>
+
+    <!-- Wallet Section -->
+    <section class="section" id="wallets">
+        <div class="section-title">
+            <h2>My Wallet Addresses</h2>
+            <p>Use these addresses for cryptocurrency transactions</p>
+        </div>
+        
+        <div class="wallet-section">
+            <div class="wallet-grid">
+                <div class="wallet-card">
+                    <div class="wallet-icon">
+                        <i class="fab fa-bitcoin"></i>
+                    </div>
+                    <h3><i class="fab fa-bitcoin"></i> Bitcoin (BTC)</h3>
+                    <p>Send Bitcoin to this address for purchases</p>
+                    <div class="wallet-address" id="btc-address">
+                        bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq
+                    </div>
+                    <div class="qrcode-container">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq" alt="BTC QR Code">
+                    </div>
+                </div>
+                
+                <div class="wallet-card">
+                    <div class="wallet-icon">
+                        <i class="fab fa-ethereum"></i>
+                    </div>
+                    <h3><i class="fab fa-ethereum"></i> Ethereum (ETH)</h3>
+                    <p>Send Ethereum to this address for purchases</p>
+                    <div class="wallet-address" id="eth-address">
+                        0x742d35Cc6634C0532925a3b844Bc454e4438f44e
+                    </div>
+                    <div class="qrcode-container">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=0x742d35Cc6634C0532925a3b844Bc454e4438f44e" alt="ETH QR Code">
+                    </div>
+                </div>
+                
+                <div class="wallet-card">
+                    <div class="wallet-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3><i class="fab fa-usd"></i> USDT (TRC20)</h3>
+                    <p>Send USDT (TRC20) to this address for purchases</p>
+                    <div class="wallet-address" id="usdt-address">
+                        TY1T4iuCrzaUo8Rq9ofQcHsY2kCzZ3JmFk
+                    </div>
+                    <div class="qrcode-container">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TY1T4iuCrzaUo8Rq9ofQcHsY2kCzZ3JmFk" alt="USDT QR Code">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transaction Form -->
+    <section class="section" id="transaction">
+        <div class="section-title">
+            <h2>Make a Transaction</h2>
+            <p>Submit your transaction details for processing</p>
+        </div>
+        
+        <div class="transaction-form">
+            <form id="transactionForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="transactionType">Transaction Type</label>
+                        <select id="transactionType" required>
+                            <option value="">Select Type</option>
+                            <option value="buy">Buy Cryptocurrency</option>
+                            <option value="sell">Sell Cryptocurrency</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cryptoType">Cryptocurrency</label>
+                        <select id="cryptoType" required>
+                            <option value="">Select Crypto</option>
+                            <option value="btc">Bitcoin (BTC)</option>
+                            <option value="eth">Ethereum (ETH)</option>
+                            <option value="usdt">USDT (TRC20)</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="amount">Amount (USD)</label>
+                        <input type="number" id="amount" placeholder="Enter amount in USD" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cryptoAmount">Crypto Amount</label>
+                        <input type="number" id="cryptoAmount" placeholder="Enter crypto amount" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="walletAddress">Your Wallet Address</label>
+                    <input type="text" id="walletAddress" placeholder="Enter your wallet address" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Additional Information</label>
+                    <textarea id="message" placeholder="Any special instructions or details"></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Transaction Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>CryptoVendor</h3>
+                <p>Secure cryptocurrency transactions with verified wallet addresses. Buy and sell crypto with confidence.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Crypto Buying</a></li>
+                    <li><a href="#">Crypto Selling</a></li>
+                    <li><a href="#">Wallet Verification</a></li>
+                    <li><a href="#">Transaction Escrow</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> contact@cryptovendor.pro</li>
+                    <li><i class="fab fa-telegram"></i> @cryptovendor_support</li>
+                    <li><i class="fas fa-shield-alt"></i> PGP Key: 0x9E7A8C2B1F</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Security</h3>
+                <ul>
+                    <li><a href="#">Verification Process</a></li>
+                    <li><a href="#">Escrow Service</a></li>
+                    <li><a href="#">Transaction Security</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 yasdonexchange. All rights reserved. </p>
+        </div>
+    </footer>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        Wallet address copied to clipboard!
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Copy Wallet Address
+        const walletAddresses = document.querySelectorAll('.wallet-address');
+        const notification = document.getElementById('notification');
+        
+        walletAddresses.forEach(wallet => {
+            wallet.addEventListener('click', () => {
+                const text = wallet.innerText;
+                navigator.clipboard.writeText(text).then(() => {
+                    // Show notification
+                    notification.classList.add('show');
+                    
+                    // Hide after 3 seconds
+                    setTimeout(() => {
+                        notification.classList.remove('show');
+                    }, 3000);
+                });
+            });
+        });
+        
+        // Transaction Form
+        const transactionForm = document.getElementById('transactionForm');
+        
+        transactionForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const transactionType = document.getElementById('transactionType').value;
+            const cryptoType = document.getElementById('cryptoType').value;
+            const amount = document.getElementById('amount').value;
+            const cryptoAmount = document.getElementById('cryptoAmount').value;
+            const walletAddress = document.getElementById('walletAddress').value;
+            
+            // In a real app, you would send this data to your server
+            alert(`Transaction request submitted!\n\nType: ${transactionType}\nCrypto: ${cryptoType}\nAmount: $${amount}\nCrypto Amount: ${cryptoAmount}\nYour Wallet: ${walletAddress}\n\nYou will receive confirmation shortly.`);
+            
+            // Reset form
+            transactionForm.reset();
+        });
+        
+        // Dynamic crypto amount calculation (example)
+        const amountInput = document.getElementById('amount');
+        const cryptoAmountInput = document.getElementById('cryptoAmount');
+        
+        // This is just a simulation - in real app you would use current rates
+        amountInput.addEventListener('input', () => {
+            if (amountInput.value) {
+                const amount = parseFloat(amountInput.value);
+                // Simulated rates
+                const rates = {
+                    btc: 0.000040,
+                    eth: 0.00055,
+                    usdt: 1,
+                    other: 0.00050
+                };
+                
+                const cryptoType = document.getElementById('cryptoType').value;
+                const rate = cryptoType ? rates[cryptoType] : rates.btc;
+                cryptoAmountInput.value = (amount * rate).toFixed(8);
+            }
+        });
+        
+        // Update crypto amount when currency changes
+        document.getElementById('cryptoType').addEventListener('change', () => {
+            if (amountInput.value) {
+                amountInput.dispatchEvent(new Event('input'));
+            }
+        });
+    </script>
+</body>
+</html>

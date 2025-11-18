@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script>
+        function showbar(){
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display='flex'
+        }
+        function closebar(){
+            const sidebar = document.querySelector('.sidebar')
+                sidebar.style.display='none'
+        }
+        function closetoo(){
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display='none'
+        }
+    </script>
+</head>
+<ul class="sidebar">
+                <svg class="close-bar" onclick=closebar() xmlns="http://www.w3.org/2000/svg" width="20" height="21"><g fill="#D0D6F9" fill-rule="evenodd"><path d="M2.575.954l16.97 16.97-2.12 2.122L.455 3.076z"/><path d="M.454 17.925L17.424.955l2.122 2.12-16.97 16.97z"/></g></svg>
+                <li><a href="#hero-1">Home</a></li>
+                <li><a href="#hero-2">My Wallet</a></li>
+                <li><a href="#hero-3">Make Transaction</a></li>
+                <li><a href="#hero-4">Contact</a></li>
+            </ul>
+ <header>
+        <div class="hero-name">
+            <h1>CHIBOY <span>Exchange</span></h1>
+        </div>
+        
+            
+        <div class="hero-head">
+            <ul>
+                <svg class="show-sidebar" onclick=showbar() xmlns="http://www.w3.org/2000/svg" width="24" height="21"><g fill="#D0D6F9" fill-rule="evenodd"><path d="M0 0h24v3H0zM0 9h24v3H0zM0 18h24v3H0z"/></g></svg>
+                <li class="hide"><a href="#hero-1">Home</a></li>
+                <li class="hide"><a href="#hero-2">My Wallet</a></li>
+                <li class="hide"><a href="#hero-3">Make Transaction</a></li>
+                <li class="hide"><a href="#hero-4">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+<body>
+    <Section onclick=closetoo() class="hero-1" id="hero-1">
+        <div class="hero-body1">
+            <h1>Secure Crypto</h1>
+            <h2>Transaction</h2>
+            <p>Professional cryptocurrency vendor with verified wallet <br> addresses. Buy and sell crypto securely with low fees <br> and fast transactions.</p>
+                <button  class="btn1"> <a href="#hero-2">View My Wallet</a></button>
+                <button class="btn2"> <a href="#hero-3">Make Transaction</a></button>
+        </div>
+        <div class="hero-1img">
+            <img src="./what-is-btc-dominance.jpg" alt="hero-img">
+        </div>
+    </Section>
+    <section class="hero-2" id="hero-2">
+        <h1>My Wallet Address</h1>
+        <pre>Use these addresses for cryptocurrency transactions</pre>
+        <div class="hero-sec2">
+            <div class="def-1">
+                <i class="fa-brands fa-bitcoin" style="color: #74C0FC;"></i>
+             <div class="bitcoin">
+                 <h3><i class="fa-brands fa-bitcoin" style="color: #ffffff;"></i>Bitcoin (BTC)</h3>
+                 <p>Send Bitcoin to this address for <br> purchases</p>
+                 <button>bc1qar0srrr7xfkvy5l643lydn<br>w9re59gtzzwf5mdq</button>
+                 <br>
+                 <img src="./bitcoin.webp" alt="">
+             </div>
+            </div>
+            <div class="def-2">
+                    <i class="fa-brands fa-ethereum" style="color: #74C0FC;"></i>
+                <div class="ethereum">
+                    <h3>  <i class="fa-brands fa-ethereum" style="color: #ffffff;"></i>Ethereum (ETH)</h3>
+                    <p>Send Ethereum to this address for purchases</p>
+                    <button>0x742d35Cc6634C0532925a3b<br>844Bc454e4438f44e</button>
+                    <br>
+                    <img src="./Ethereum.webp" alt="">
+                </div>
+            </div>
+            <div class="def-3">
+                <i class="fa-solid fa-hand-holding-dollar" style="color: #74C0FC;"></i>
+                <div class="USDT">
+                    <h3> <i class="fa-solid fa-hand-holding-dollar" style="color: #ffffff;"></i>USDT (TRC20)</h3>
+                    <p>Send USDT (TRC20) to this address for purchases</p>
+                    <button>TY1T4iuCrzaUo8Rq9ofQcHsY<br>2kCzZ3JmFk</button>
+                    <br>
+                    <img src="./USDT.webp" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="hero-3" id="hero-3">
+        <h1>Make a Transaction</h1>
+        <p>Submit your transaction details for processing</p>
+        <form  id="form-validation">
+            <fieldset>
+                <div class="Hero-transaction-1">
+                     <div class="transact-1">
+                            <label for="Transaction Type">Transaction Type</label> <br>
+                         <select name="Transaction Type" id="#">
+                                <option value="Select Type">Select Type</option>
+                                <option value="Buy Cryptocurrency">Buy Cryptocurrency</option>
+                                 <option value="Sell Cryptocurrency">Sell Cryptocurrency</option>
+                          </select>
+                        </div>
+                        <div class="transact-2">
+                            <label for="Cryptocurrency">Cryptocurrency</label> <br>
+                            <select name="Cryptocurrency" id="">
+                                <option value="Sell Crypto">Sell Crypto</option>
+                                <option value="BTC">Bitcoin(BTC)</option>
+                                <option value="ETH">Ethereum</option>
+                                <option value="USDT">USDT(TRC20)</option>
+                            </select>
+                        </div>
+                </div>
+                 <div class="crypto">
+                     <div class="crypto-1">
+                          <label for="Amount (USSD)">Amount (USSD)</label> <br>
+                          <input name="Amount (USSD)" id="Amount" type="number" placeholder="Enter Amount in USSD">
+                        </div>
+                        <div class="crypto-2">
+                            <label for="Crypto Amount">Crypto Amount</label> <br>
+                            <input name="Crypto Amount" type="number" placeholder="Enter Crypto Amount">
+                        </div>
+                    </div>
+                    <div class="Wallet-address">
+                        <label for="Your Wallet Address">Your Wallet Address</label> <br>
+                        <input type="text" id="Walladdress" name="Your Wallet Address" placeholder="Enter Your Wallet Address">
+                    </div>
+                    <div class="hero-text-area">
+                        <label for="Additional Information">Additional Information</label>  <br>
+                        <textarea name="Additional Information" class="" placeholder="Any special instruction or details"></textarea>
+                    </div>
+                    <div class="hero-submit">
+                        <button>
+                            <a href="#">Submit Transaction Request</a>
+                        </button>
+                    </div>
+            </fieldset>
+        </form>
+    </section>
+    <div class="Errordiv" style="color: red; display: none;"></div>
+    <script src="./script.js"></script>
+</body>
+<section class="hero-4" id="hero-4">
+    <footer>
+        <div class="first-foot">
+                <h1>CryptoVendor</h1>
+                <p>Secure cryptocurrency transactions <br> with verified wallet addresses. Buy and <br> sell crypto with confidence.</p>
+                <div class="first-foot-icon">
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-telegram"></i>
+                    <i class="fa-brands fa-discord"></i>
+                    <i class="fa-brands fa-linkedin"></i>
+                </div>
+        </div>
+        <div class="second-foot">
+                <h1>Services</h1>
+                <div class="foot">
+                       <li><a href="#">Crypto Buying</a></li><br>
+                       <li><a href="#">Crypto Selling</a></li> <br>
+                       <li><a href="#">Wallet Verification</a></li> <br>
+                       <li><a href="#">Transaction Escrow</a></li> <br>
+                </div>
+        </div>
+        <div class="third-foot">
+                <h1>Contact</h1>
+                <ul>
+                    <li><i class="fa-solid fa-envelope"></i>contact@cryptovendor.pro</li>
+                    <li><i class="fa-brands fa-telegram"></i>@cryptovendor_support</li>
+                    <li><i class="fa-solid fa-shield-halved"></i>PGP Key: 0x9E7A8C2B1F</li>
+                </ul>
+        </div>
+        <div class="fourth-foot">
+                <h1>Security</h1>
+                <ul>
+                    <li>Verification Process</li>
+                    <li>Escrow Service</li>
+                    <li>Transaction Security</li>
+                    <li>Privacy Policy</li>
+                </ul>
+        </div> <br>
+    </footer>
+    <hr>
+    <div class="copyright">
+        <p>&copy 2025 chiboyexchange. All rights reserved.</p>
+    </div>
+</section>
+</html>
